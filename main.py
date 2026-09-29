@@ -2,7 +2,6 @@ import asyncio
 import json
 import websockets
 import aiohttp
-import asyncio
 
 # معلومات البوت ديالك
 TELEGRAM_BOT_TOKEN = "8920135049:AAFNWlYajeaQkWZVRRAwQjR0UXZOx6F_2aI"
@@ -32,7 +31,7 @@ async def send_telegram_alert(mint, stats):
     async with aiohttp.ClientSession() as session:
         await session.post(url, json=payload)
 
-# 1. حط هنا مفتاح API ديال Bitquery ديالك
+# 1. مفتاح API ديال Bitquery
 BITQUERY_API_KEY = "ory_at_HiIVFD_1xPR8Cl5j1G8JgK0-3YMZEXqCnFX8c-mSOtQ.1RQUmg9s5SKSloQfb1qbl1H2sCc93AKdoqE152ap51E"
 
 # 2. الاستعلام (GraphQL Subscription) الخاص بـ Pump.fun على Solana
@@ -69,7 +68,6 @@ subscription {
 active_tokens = {}
 
 async def run_bitquery_sniper():
-    # الرابط المباشر للـ WebSocket ديال Bitquery V2
     url = f"wss://streaming.bitquery.io/graphql?token={BITQUERY_API_KEY}"
     
     headers = {
@@ -95,6 +93,9 @@ async def run_bitquery_sniper():
             try:
                 response = await ws.recv()
                 data = json.loads(response)
+                
+                # طباعة تشخيصية للتحقق من تدفق البيانات
+                print("📥 وصلت داتا جديدة من Bitquery...")
 
                 if data.get("type") == "data":
                     trade_info = data["payload"]["data"]["Solana"]["DEXTrades"][0]["Trade"]
