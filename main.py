@@ -3,7 +3,7 @@ import json
 import websockets
 
 # 1. حط هنا مفتاح API ديال Bitquery ديالك
-BITQUERY_API_KEY = "حط_API_KEY_ديالك_هنا"
+BITQUERY_API_KEY = "ory_at_HiIVFD_1xPR8Cl5j1G8JgK0-3YMZEXqCnFX8c-mSOtQ.1RQUmg9s5SKSloQfb1qbl1H2sCc93AKdoqE152ap51E"
 
 # 2. الاستعلام (GraphQL Subscription) الخاص بـ Pump.fun على Solana
 BITQUERY_SUBSCRIPTION = """
